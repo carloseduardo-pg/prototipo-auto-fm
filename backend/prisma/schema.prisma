@@ -2,13 +2,13 @@
 // Code/persistence in English; UI labels in Portuguese.
 
 generator client {
-  provider = "prisma-client-js"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
+  moduleFormat = "cjs"
 }
 
 datasource db {
   provider = "postgresql"
-  // Prisma 6: URL fica no schema (correto neste projeto).
-  url      = env("DATABASE_URL")
 }
 
 enum SourceKind {

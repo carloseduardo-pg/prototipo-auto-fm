@@ -16,6 +16,7 @@ venv/
 frontend/dist/
 backend/dist/
 backend/build/
+backend/generated/
 
 # Ambiente e segredos
 .env

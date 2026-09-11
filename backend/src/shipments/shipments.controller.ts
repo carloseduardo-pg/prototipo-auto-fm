@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { ApiCookieAuth, ApiOperation, ApiTags } from '@nestjs/swagger';
 import type { Request } from 'express';
-import { ShipmentStatus } from '@prisma/client';
+import { ShipmentStatus } from '../prisma/orm';
 import { parsePage } from '../common/pagination';
 import { IssueShipmentDto } from './dto/shipment.dto';
 import { ShipmentsService } from './shipments.service';

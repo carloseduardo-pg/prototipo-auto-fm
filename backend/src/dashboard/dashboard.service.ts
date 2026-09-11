@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ShipmentStatus } from '@prisma/client';
+import { ShipmentStatus } from '../prisma/orm';
 import { PrismaService } from '../prisma/prisma.service';
 
 /** Contagens do hub Início (evita N listagens completas). */

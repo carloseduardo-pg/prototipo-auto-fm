@@ -68,6 +68,10 @@
 - Alinhou contexto, requisitos, mapa, GATE, DOMINIO-TECNICO, USAR-COMO-BASE e especificações ao estado atual + ao que os DOCX realmente dizem.
 - Não copiou senhas nem PII.
 
+### 2026-09-11 — Prisma 7 (sumir o aviso da `url`)
+
+**Feito:** URL saiu do `schema.prisma` e foi para `backend/prisma.config.ts`. Client gerado em `backend/generated/prisma` com adapter `pg`. Nest build OK.
+
 ## Pendências abertas
 
 - Combinar contrato de dados com o RPA do Vini (formato da remessa / três fontes)

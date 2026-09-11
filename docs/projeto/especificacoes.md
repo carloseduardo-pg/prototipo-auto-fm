@@ -25,7 +25,7 @@ Segurança: [`seguranca.md`](seguranca.md) · Escalabilidade: [`escalabilidade.m
 | Frontend | React · Vite · TypeScript |
 | Backend / API | NestJS · TypeScript |
 | Banco | PostgreSQL |
-| ORM | Prisma |
+| ORM | Prisma 7 (`prisma.config.ts` + adapter `pg`) |
 | Validação API | class-validator + ValidationPipe |
 | HTTP client FE | `fetch` com `credentials: 'include'` |
 | Auth | JWT access + refresh em cookie **httpOnly** |

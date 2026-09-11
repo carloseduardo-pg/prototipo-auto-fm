@@ -4,7 +4,7 @@ import {
   NotFoundException,
 } from '@nestjs/common';
 import * as bcrypt from 'bcrypt';
-import { Prisma } from '@prisma/client';
+import { Prisma } from '../prisma/orm';
 import {
   pageResult,
   skipTake,

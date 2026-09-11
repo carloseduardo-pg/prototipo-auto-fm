@@ -11,7 +11,7 @@ import {
   ShipmentStatus,
   SourceKind,
   SourceState,
-} from '@prisma/client';
+} from '../prisma/orm';
 import {
   pageResult,
   skipTake,
