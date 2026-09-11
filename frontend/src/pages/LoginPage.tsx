@@ -49,7 +49,7 @@ export function LoginPage() {
 
         <form className="auth-card" onSubmit={onSubmit} noValidate>
           <div>
-            <h1 className="auth-title">Entrar no portal</h1>
+            <h1 className="auth-title">Portal de Automações</h1>
             <p className="auth-sub">Use suas credenciais da FM Transportes.</p>
           </div>
 

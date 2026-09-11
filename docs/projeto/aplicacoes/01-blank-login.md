@@ -1,4 +1,4 @@
-# `blank_login` — Entrar no portal
+# `blank_login` — Portal de Automações
 
 Rota: `/login`. Mockup: `referencia-ui/index.html`.
 
