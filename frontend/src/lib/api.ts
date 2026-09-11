@@ -1,4 +1,16 @@
-const API_BASE = import.meta.env.VITE_API_URL || 'http://localhost:3000/api';
+/** Mesmo host da página (localhost vs 127.0.0.1) para CORS e cookies. */
+function apiBase() {
+  if (import.meta.env.VITE_API_URL) {
+    return import.meta.env.VITE_API_URL as string;
+  }
+  const host =
+    typeof window !== 'undefined' ? window.location.hostname : '127.0.0.1';
+  const protocol =
+    typeof window !== 'undefined' ? window.location.protocol : 'http:';
+  return `${protocol}//${host}:3000/api`;
+}
+
+const API_BASE = apiBase();
 
 /** Perfil público do usuário autenticado (sem token). */
 export type AuthUser = {

@@ -6,6 +6,27 @@ import cookieParser from 'cookie-parser';
 import helmet from 'helmet';
 import { AppModule } from './app.module';
 
+/**
+ * Aceita a lista do `.env` e o par localhost/127.0.0.1 (o browser trata
+ * os dois como origens diferentes; cookies + CORS quebram se só um passar).
+ */
+function corsOrigins(raw?: string): string[] {
+  const listed = (raw || 'http://localhost:5190,http://127.0.0.1:5190')
+    .split(',')
+    .map((value) => value.trim())
+    .filter(Boolean);
+  const twins = listed.flatMap((origin) => {
+    if (origin.includes('localhost')) {
+      return [origin.replace('localhost', '127.0.0.1')];
+    }
+    if (origin.includes('127.0.0.1')) {
+      return [origin.replace('127.0.0.1', 'localhost')];
+    }
+    return [];
+  });
+  return [...new Set([...listed, ...twins])];
+}
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   const config = app.get(ConfigService);
@@ -18,7 +39,7 @@ async function bootstrap() {
   );
   app.use(cookieParser());
   app.enableCors({
-    origin: config.get<string>('CORS_ORIGIN') || 'http://localhost:5190',
+    origin: corsOrigins(config.get<string>('CORS_ORIGIN')),
     credentials: true,
   });
   app.useGlobalPipes(

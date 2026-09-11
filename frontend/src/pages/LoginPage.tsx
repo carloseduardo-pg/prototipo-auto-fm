@@ -20,8 +20,21 @@ export function LoginPage() {
     setSubmitting(true);
     try {
       await login(email, password);
-    } catch {
-      setError('E-mail ou senha não conferem. Tente novamente.');
+    } catch (cause) {
+      const msg = cause instanceof Error ? cause.message : '';
+      if (
+        !msg ||
+        msg === 'Failed to fetch' ||
+        msg.toLowerCase().includes('network')
+      ) {
+        setError(
+          'Não foi possível falar com a API. Confira se ela está no ar em :3000.',
+        );
+      } else if (msg.toLowerCase().includes('não conferem')) {
+        setError('E-mail ou senha não conferem. Tente novamente.');
+      } else {
+        setError(msg);
+      }
     } finally {
       setSubmitting(false);
     }
@@ -83,7 +96,14 @@ export function LoginPage() {
           </p>
         </form>
 
-        <p className="auth-foot">Portal interno · Prottus</p>
+        <div className="auth-foot">
+          <p className="auth-foot-label">Portal interno</p>
+          <img
+            className="auth-foot-logo"
+            src="/assets/logo-prottus.png"
+            alt="Prottus — inteligência e tecnologia"
+          />
+        </div>
       </div>
     </main>
   );

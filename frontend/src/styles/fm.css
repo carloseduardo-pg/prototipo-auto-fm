@@ -552,9 +552,9 @@ table.data tbody tr:hover { background: var(--fog); }
     radial-gradient(900px 480px at 50% -10%, #EAF3FE 0%, rgba(234,243,254,0) 70%),
     var(--fog);
 }
-.auth-box { width: 100%; max-width: 388px; }
+.auth-box { width: 100%; max-width: 440px; }
 .auth-brand { display: flex; justify-content: center; margin-bottom: var(--s-8); }
-.auth-brand img { height: 62px; width: auto; }
+.auth-brand img { height: 140px; width: auto; max-width: 100%; }
 .auth-card {
   background: var(--surface);
   border: 1px solid var(--lane);
@@ -567,9 +567,19 @@ table.data tbody tr:hover { background: var(--fog); }
 .auth-sub { font-size: var(--t-body); color: var(--road); margin-top: var(--s-1); }
 .auth-foot {
   margin-top: var(--s-6);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--s-3);
   text-align: center;
   font-size: var(--t-small);
   color: var(--road-light);
+}
+.auth-foot-label { margin: 0; }
+.auth-foot-logo {
+  height: 104px;
+  width: auto;
+  display: block;
 }
 .auth-foot a { color: var(--road); }
 
