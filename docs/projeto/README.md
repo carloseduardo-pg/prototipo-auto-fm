@@ -20,5 +20,5 @@ Origem da stack: clone da base Distac — [`USAR-COMO-BASE.md`](USAR-COMO-BASE.m
 | [requisitos/](requisitos/) | RF / RNF |
 | [modulos/](modulos/) | Status |
 | [aplicacoes/](aplicacoes/) | Specs das telas |
-| [documentacao-base/](documentacao-base/) | Síntese das fontes do guarda-chuva |
+| [documentacao-base/](documentacao-base/) | Síntese relida dos DOCX/XLSX do guarda-chuva (inclui Plano MTO) |
 | [database/](database/) | Ponte → [`../../database/`](../../database/) |

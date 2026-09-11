@@ -1,28 +1,32 @@
 # Contexto do projeto — Portal FM Transportes
 
-> Stack → [`especificacoes.md`](especificacoes.md) · Segurança → [`seguranca.md`](seguranca.md) · Escala → [`escalabilidade.md`](escalabilidade.md)
+> Stack → [`especificacoes.md`](especificacoes.md) · Segurança → [`seguranca.md`](seguranca.md) · Escala → [`escalabilidade.md`](escalabilidade.md)  
+> Fontes do guarda-chuva → [`documentacao-base/`](documentacao-base/) (releitura 2026-09-11)
 
 ## Objetivo
 
 Portal interno da **FM Transportes** (Prottus) para operações de expedição. O problema atual: a emissão de CT-e depende de conferência manual entre três fontes desconectadas (OTM, SFTP e planilha Excel), com digitação no GW Webtrans. A plataforma coleta, reconcilia e apresenta uma prévia; o operador informa o motorista, confirma, e a emissão vai para o GW via API.
 
-A FM Transportes é transportadora de cargas terrestres, sede em Recife-PE, fundada em 2018, filiais em PB, CE, RN, SP, BA e RJ (fonte: LinkedIn `linkedin.com/company/fmtransp` — única fonte institucional confirmada). Cliente núcleo da operação observada: **M. Dias**.
+A FM Transportes é transportadora de cargas terrestres, sede em Recife-PE, fundada em 2018, filiais em PB, CE, RN, SP, BA e RJ (fonte: LinkedIn `linkedin.com/company/fmtransp` — única fonte institucional confirmada). Cliente núcleo da operação observada: **M. Dias** (cifras internas 50% vs ~80% — confirmar antes de documento externo). Sem site, sem Instagram, sem CNPJ/endereço confirmados — não pesquisar.
 
 ## Usuários principais
 
 - **Operador de expedição:** conferir remessas do dia, ver estado das três fontes, informar motorista, confirmar prévia e emitir CT-e.
 - **Coordenador da operação (Gutemberg):** referência de regra de negócio; mesma visão operacional, com acompanhamento do volume do dia.
 - **Administrador da plataforma (Prottus / FM):** usuários ativos, papéis. Detalhe de papéis extras: A definir em DOP.
+- **Sócios (Paulo e Rodrigo):** priorização estratégica; não são usuários do fluxo diário de emissão.
 
 ## Escopo inicial (1ª entrega — este protótipo)
+
+Decisões 11/09 em cima do Relatório Geral (02/09) e da ata 01/09:
 
 - Login (JWT httpOnly)
 - Início com resumo da última coleta
 - Lista de remessas do dia com estado das três fontes
 - Prévia de emissão com confirmação humana obrigatória
 - Campo de motorista na prévia
-- Disparo de CT-e via API do GW fica para uma fase seguinte — neste protótipo o fluxo para na prévia / confirmação (integração GW depois)
-- Falha explícita quando fonte faltar ou o arquivo não bater
+- Disparo de CT-e via API do GW fica para uma fase seguinte — neste protótipo o fluxo para na prévia / confirmação
+- Falha explícita quando fonte faltar ou o arquivo não bater (NOTEFIZ vs foto/XML/PDF)
 - Emissão bloqueada enquanto as três fontes não conferirem
 - Integridade/auditoria no PostgreSQL (padrão Distac)
 - UI conforme mockup em `referencia-ui/`
@@ -30,15 +34,20 @@ A FM Transportes é transportadora de cargas terrestres, sede em Recife-PE, fund
 
 ## Fora de escopo (1ª entrega) — decisão 2026-09-11
 
-- **Manifesto** — fora. Menu continua “em breve”; não construir tela nem API
+- **Manifesto** — fora. Menu continua “em breve”; não construir tela nem API. O AS IS cita CT-e e Manifesto; o protótipo é só CT-e.
 - Reescrever o GW Webtrans
 - RPA digitando na interface do GW
 - Cobertura/campos da API do GW — não bloqueia o protótipo; volta quando formos emitir de verdade
 - Cadastro institucional (CNPJ, endereço) — não entra no protótipo de operação
 - Indicadores e Automações como módulos completos
-- Central da empresa “por setor” — o 1º entregável é só o cerne da expedição (remessas / CT-e), não um painel de todos os departamentos
+- Central da empresa “por setor” (pedido dos sócios em 01/09) — o 1º entregável é o cerne da expedição, não um painel de todos os departamentos
+- Módulos Administrativo / Fiscal / Contábil / Financeiro do Plano MTO — hipótese Amarante, não validada na FM
 - Eliminação definitiva da planilha Excel
 - App do motorista, financeiro, CRM, frota completa
+
+## AS IS (Relatório Geral)
+
+SFTP → lançamento no Excel → importação no GW (código ou arquivo) → erros → conferência campo a campo no OTM (duas telas) → correção no GW → CT-e / Manifesto.
 
 ## Onde ler o quê
 
@@ -46,6 +55,7 @@ A FM Transportes é transportadora de cargas terrestres, sede em Recife-PE, fund
 |---------|---------|
 | **Domínio técnico** | [`DOMINIO-TECNICO.md`](DOMINIO-TECNICO.md) |
 | Metodologia Prottus | [`docs/prottus/metodologia.md`](../prottus/metodologia.md) |
+| Plano MTO do cliente | [`documentacao-base/08-plano-mto.md`](documentacao-base/08-plano-mto.md) |
 | Specs | [`especificacoes.md`](especificacoes.md) |
 | Segurança | [`seguranca.md`](seguranca.md) |
 | Escalabilidade | [`escalabilidade.md`](escalabilidade.md) |

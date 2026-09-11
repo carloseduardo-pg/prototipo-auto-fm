@@ -1,6 +1,6 @@
 # GATE DE LIBERAÇÃO — Portal FM Transportes
 
-Kickoff documental (Caminho A) em 2026-09-11.
+Kickoff documental (Caminho A) em 2026-09-11. Scaffold concluído na mesma data. Fontes do guarda-chuva relidas em 2026-09-11 (`documentacao-base/`).
 
 ## Checklist
 
@@ -14,6 +14,7 @@ Kickoff documental (Caminho A) em 2026-09-11.
 - [x] `docs/projeto/modulos/STATUS_PROTOTIPO.md`
 - [x] `docs/projeto/modulos/README.md`
 - [x] `docs/projeto/padrao-aplicacoes.md`
+- [x] `docs/projeto/documentacao-base/` (incluindo Plano MTO)
 
 **Cursor**
 
@@ -22,30 +23,14 @@ Kickoff documental (Caminho A) em 2026-09-11.
 - [x] `.cursor/agents/cursor-cadu.md`
 - [x] `docs/prottus/` intacto
 
-**Extras**
+**Código**
 
 - [x] Logo em `imagens/`
-- [x] `.gitignore` alinhado à stack
-- [x] Fontes em `docs/projeto/documentacao-base/`
 - [x] Mockup em `referencia-ui/`
+- [x] Frontend React (login, Início, Remessas, Usuários)
+- [x] Backend Nest (auth, shipments, dashboard, users)
+- [x] Prisma `fm_auto` + seed
 
-## Prompt para colar quando for gerar código
+## O que o gate já não pede
 
-```text
-GATE DE LIBERAÇÃO PROTTUS CONCLUÍDO.
-
-Validei docs/projeto/ e .cursor/rules/projeto/fm.mdc.
-docs/prottus/ e .cursor/rules/prottus/ permanecem intactos.
-
-Pode iniciar o scaffold seguindo docs/projeto/especificacoes.md,
-docs/projeto/USAR-COMO-BASE.md e as regras Prottus.
-
-Primeira tarefa: copiar a estrutura Distac (frontend/backend/database/tests)
-trocando o domínio de vendas por remessas/CT-e, tokens FM e logos.
-Mínimo rodável: install/dev, login JWT, shell, Início e lista de remessas
-(dados seed / contrato futuro com o RPA do Vini). Sem Manifesto. Sem API GW
-nesta entrega. Sem coleta OTM/SFTP neste repo.
-
-Ao terminar: atualize docs/projeto/modulos/STATUS_PROTOTIPO.md
-e registre a sessão em .cursor/agents/cursor-cadu.md.
-```
+O prompt de “iniciar o scaffold Distac” foi executado. Próximo trabalho: contrato com o RPA do Vini; API GW e Manifesto no backlog. Ver [`modulos/STATUS_PROTOTIPO.md`](modulos/STATUS_PROTOTIPO.md).

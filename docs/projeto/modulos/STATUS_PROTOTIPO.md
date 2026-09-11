@@ -1,6 +1,6 @@
 # Status do protótipo — Portal FM Transportes
 
-**Atualizado:** 2026-09-11  
+**Atualizado:** 2026-09-11 (docs alinhadas aos DOCX de `FM Transportes/`)  
 **Papel:** pasta do portal (protótipo) no guarda-chuva FM Transportes.
 
 ## Veredito
@@ -23,7 +23,7 @@
 | Camada | Status |
 |--------|--------|
 | Docs Prottus | Intactos |
-| Docs projeto | Preenchido (kickoff) + scaffold |
+| Docs projeto | Relidos os DOCX de `FM Transportes/` (2026-09-11) + scaffold |
 | Referência UI | Completa (login, início, remessas, DS) |
 | Frontend | React + Vite — tokens FM |
 | Backend | Nest `/api` + Swagger `/api/docs` |

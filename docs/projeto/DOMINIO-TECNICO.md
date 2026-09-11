@@ -1,7 +1,7 @@
 # Domínio técnico — Portal FM Transportes
 
-**Audiência:** tech lead e quem for clonar o scaffold Distac neste repo.  
-**Estado:** fundação documental + mockup HTML. Código Nest/React ainda não gerado.
+**Audiência:** tech lead e quem for evoluir o portal.  
+**Estado:** scaffold rodável (Nest + React + Prisma `fm_auto`). Mockup HTML em `referencia-ui/`. Fontes de descoberta em [`documentacao-base/`](documentacao-base/).
 
 | Tema | Arquivo |
 |------|---------|

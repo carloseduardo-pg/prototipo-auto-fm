@@ -5,7 +5,7 @@ Documento vivo do domínio. Abordagem: [`docs/prottus/mapa-entidades.md`](../pro
 Código/DB em **inglês**; labels de UI em **português**.  
 Auth: `users`. Auditoria: `audit_log` (triggers) — `password_hash` omitido.
 
-Nomes de tabela abaixo são **hipótese de modelagem** para o scaffold (não há schema Prisma ainda). Não inventar campos de API do GW que não foram mapeados.
+Nomes de tabela abaixo batem com `backend/prisma/schema.prisma`. Não inventar campos de API do GW que não foram mapeados.
 
 ---
 
@@ -43,7 +43,7 @@ O operador reconcilia isso hoje olhando GW e OTM ao mesmo tempo. A plataforma gu
 | CollectionRun | Execução do robô de coleta (horário, totais) |
 | AuditLog | Somente triggers |
 
-Campos observados na planilha de controle (fonte real, não copiar PII para o git): motorista, placa(s), tipo de veículo, eixos, vínculo (SPOT / AGREGADO / FIXO), liberação seguradora, nº da carga, origem, destino, NF, volumes, km, entregas, valor da carga, valor do frete, frete motorista, tipo CT-e, tomador (ex.: MDIAS, BIMBO).
+Colunas completas da planilha: [`documentacao-base/06-planilha-controle.md`](documentacao-base/06-planilha-controle.md). Não copiar PII para o git.
 
 ## 4. Diagrama
 
@@ -85,7 +85,7 @@ erDiagram
 
 ## 6. Telas
 
-| Tela UI | API (planejado) | Entidades |
+| Tela UI | API | Entidades |
 |---------|-----------------|-----------|
 | `/login` | `/api/auth/*` | User |
 | `/` | `/api/dashboard/summary` | CollectionRun, totais |

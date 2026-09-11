@@ -1,7 +1,7 @@
 # Cursor — Cadu
 
 **Repositório:** prototipo-auto-fm — Portal FM Transportes  
-**Última atualização:** 2026-09-11  
+**Última atualização:** 2026-09-11 (docs relidas do guarda-chuva)  
 **Local:** `.cursor/agents/cursor-cadu.md`
 
 ---
@@ -57,6 +57,16 @@
 - POST `/shipments/collect` 501 explícito (RPA / Vini).
 
 **Arquivos:** `frontend/`, `backend/`, `database/`, `tests/`, `package.json`.
+
+### 2026-09-11 — Releitura das fontes `FM Transportes/`
+
+**Objetivo:** as sínteses em `docs/projeto/documentacao-base/` estavam rasas; vários docs do projeto ainda falavam em “scaffold por fazer”.
+
+**Feito:**
+- Releu Relatório Geral, Documento Base v4, ata 01/09, campo 19/08, Plano MTO (arquivo V2 / conteúdo v4) e cabeçalhos da planilha.
+- Reescreveu as sínteses e criou `08-plano-mto.md`.
+- Alinhou contexto, requisitos, mapa, GATE, DOMINIO-TECNICO, USAR-COMO-BASE e especificações ao estado atual + ao que os DOCX realmente dizem.
+- Não copiou senhas nem PII.
 
 ## Pendências abertas
 

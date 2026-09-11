@@ -63,7 +63,7 @@ Equivalência de telas: [`padrao-aplicacoes.md`](padrao-aplicacoes.md). Referên
 | Porta | `5432` |
 | Usuário / senha | `postgree` / `postgree` (somente desenvolvimento) |
 | Database | `fm_auto` |
-| Triggers / audit | a criar no scaffold (`database/sql/03-triggers.sql`) |
+| Triggers / audit | `database/sql/03-triggers.sql` + `audit_log` no Prisma (já aplicados no `fm_auto`) |
 
 ---
 

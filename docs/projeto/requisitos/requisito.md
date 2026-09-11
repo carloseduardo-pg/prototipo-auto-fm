@@ -36,7 +36,7 @@ Plataforma que reconcilia OTM, SFTP e planilha, mostra ao operador de expediçã
 | RNF-03 | Simples e completo no domínio | Remessa + fontes + emissão; GW continua fiscal | [`mapa-entidades.md`](../mapa-entidades.md) |
 | RNF-04 | Integridade no banco | Triggers + `audit_log` (scaffold Distac) | [`database/`](../../../database/) |
 | RNF-05 | Dados sensíveis protegidos | bcrypt; hash omitido na auditoria; credenciais de integração fora do git | [`seguranca.md`](../seguranca.md) |
-| RNF-06 | Qualidade verificável | Smoke + carga após scaffold | `tests/` (a criar) |
+| RNF-06 | Qualidade verificável | Smoke + carga | `tests/load/run-node.mjs` (`npm run test:smoke`) |
 | RNF-07 | UI sem emojis | `Icon` + DS FM | [`design-system.md`](../design-system.md) |
 | RNF-08 | Controle humano na emissão fiscal | Prévia obrigatória; botão desabilitado, não oculto | ata 01/09/2026 |
 | RNF-09 | Sem falha silenciosa | Erro de fonte/formato visível na linha e na prévia | ata 01/09/2026 |
@@ -45,18 +45,20 @@ Plataforma que reconcilia OTM, SFTP e planilha, mostra ao operador de expediçã
 
 | Sistema | Tipo | Status |
 |---------|------|--------|
-| GW Webtrans | API emissão (“conhecimento”) | Fase seguinte — não bloqueia o protótipo de fluxo |
-| Oracle Logistics (OTM) | Coleta (2 telas) | Acesso encaminhado |
-| SFTP | Arquivos de NF/carga | Acesso encaminhado; formato inconsistente confirmado |
-| Planilha Excel | Conferência transitória | Cópia operacional existe no guarda-chuva (`PROJETO - INTEGRAÇÃO OPERACIONAL.xlsx`) |
+| GW Webtrans | API emissão (“conhecimento”) | Fase seguinte — POST `/issue` registra prévia e devolve 503 explícito |
+| Oracle Logistics (OTM) | Coleta (2 telas) | Fora deste repo (RPA Vini); POST `/collect` devolve 501 |
+| SFTP | Arquivos de NF/carga | Fora deste repo; NOTEFIZ inconsistente confirmado na ata 01/09 |
+| Planilha Excel | Conferência transitória | Cópia no guarda-chuva; colunas em [`../documentacao-base/06-planilha-controle.md`](../documentacao-base/06-planilha-controle.md) |
 
 ## 6. Setores ainda sem descoberta (DOP)
 
 Administrativo, Fiscal, Contábil, Financeiro — divisão herdada de outro cliente; **não validada** na FM. Não construir módulos para essas áreas agora.
 
-## 7. Prioridade imediata após esta documentação
+## 7. Prioridade imediata
 
-1. Scaffold Distac com domínio FM (auth + shell + Início + Remessas).
-2. Fluxo operacional: lista, três fontes, prévia, motorista, bloqueio de emitir.
-3. Consumir dados que o RPA do Vini (e o seed) trouxerem — não construir coleta OTM/SFTP neste entregável.
-4. API GW e Manifesto: depois.
+Scaffold e fluxo operacional (lista, três fontes, prévia, motorista, bloqueio de emitir) **já existem**. Próximo:
+
+1. Combinar contrato de dados com o RPA do Vini (formato da remessa e das três fontes).
+2. Não construir coleta OTM/SFTP neste entregável.
+3. API GW e Manifesto: depois.
+4. DOP das áreas do Plano MTO só se a FM validar — hoje é hipótese Amarante.

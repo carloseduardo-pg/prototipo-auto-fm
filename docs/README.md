@@ -3,6 +3,7 @@
 | Pasta | Conteúdo |
 |-------|----------|
 | [projeto/](projeto/) | Contexto, stack, segurança, escala, domínio, apps, status |
+| [projeto/documentacao-base/](projeto/documentacao-base/) | Síntese dos DOCX/XLSX do guarda-chuva `FM Transportes/` |
 | [prottus/](prottus/) | Metodologia e qualidade da empresa (**não editar**) |
 
 Comece por:
