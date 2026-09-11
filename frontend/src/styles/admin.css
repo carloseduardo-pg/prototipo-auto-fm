@@ -1,0 +1,223 @@
+/* Utilitários de CRUD (usuários) mapeados aos tokens FM — sem vermelho Distac. */
+
+#root {
+  min-height: 100%;
+}
+
+:root {
+  --brand-primary: var(--fm-blue);
+  --brand-primary-hover: var(--fm-blue-press);
+  --brand-ink: var(--asphalt);
+  --page-bg: var(--fog);
+  --card-bg: var(--surface);
+  --border-color: var(--lane);
+  --text-primary: var(--asphalt);
+  --text-secondary: var(--road);
+  --text-muted: var(--road-light);
+  --success: var(--ok);
+  --danger: var(--fail);
+  --font-family: var(--font);
+  --font-size-body: var(--t-body);
+  --font-size-small: var(--t-small);
+  --font-size-title: var(--t-title);
+  --font-size-module: var(--t-title);
+  --control-height: 36px;
+}
+
+.module-title {
+  margin: 0 0 var(--s-4);
+  color: var(--fm-blue-deep);
+  font-size: var(--t-title);
+  font-weight: var(--w-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--track-title);
+}
+
+.filter-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px 16px;
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  background: var(--fog);
+  border: 1px solid var(--lane);
+  border-radius: var(--r-md);
+}
+
+.filter-bar__fields {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 12px;
+  flex: 1 1 240px;
+}
+
+.filter-bar__label {
+  font-size: var(--t-small);
+  color: var(--road);
+  font-weight: var(--w-semi);
+}
+
+.filter-bar__fields input,
+.filter-bar__fields select {
+  height: var(--control-height);
+  min-width: min(100%, 220px);
+  padding: 0 10px;
+  border: 1px solid var(--lane);
+  border-radius: var(--r-md);
+  background: var(--surface);
+}
+
+.filter-bar__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-bar__divider {
+  width: 1px;
+  height: 24px;
+  background: var(--lane);
+}
+
+.data-table-wrapper {
+  overflow: auto;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--lane-soft);
+  text-align: left;
+}
+
+.data-table th {
+  background: var(--fog);
+  color: var(--road);
+  font-size: var(--t-small);
+  font-weight: var(--w-semi);
+  text-transform: uppercase;
+}
+
+.badge--success {
+  background: var(--ok-soft);
+  color: var(--ok);
+}
+
+.badge--danger {
+  background: var(--fail-soft);
+  color: var(--fail);
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+
+.form-field label {
+  color: var(--road);
+  font-size: var(--t-small);
+  font-weight: var(--w-semi);
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+  min-height: var(--control-height);
+  border: 1px solid var(--lane);
+  border-radius: var(--r-md);
+  padding: 6px 10px;
+  background: var(--surface);
+}
+
+.form-error {
+  color: var(--fail);
+  font-size: var(--t-small);
+  margin: 0 0 12px;
+}
+
+.row-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+  color: var(--road);
+  font-size: var(--t-small);
+}
+
+.pagination span {
+  margin-right: auto;
+}
+
+.status-toggle {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--lane);
+  border-radius: var(--r-sm);
+}
+
+.status-toggle button {
+  height: var(--control-height);
+  padding: 0 12px;
+  border: 0;
+  background: var(--surface);
+  cursor: pointer;
+  color: var(--road);
+}
+
+.status-toggle .is-active {
+  background: var(--ok);
+  color: #fff;
+  font-weight: 700;
+}
+
+.status-toggle .is-inactive {
+  background: var(--fail);
+  color: #fff;
+  font-weight: 700;
+}
+
+.btn-ghost {
+  background: transparent;
+  border: 1px solid transparent;
+  color: var(--road);
+  cursor: pointer;
+}
+
+.btn-ghost:hover {
+  color: var(--fm-blue);
+  background: var(--fm-blue-soft);
+}
+
+.btn-outline {
+  background: var(--surface);
+  border: 1px solid var(--lane);
+  color: var(--asphalt);
+}
+
+.shell-alert {
+  margin: 0 0 var(--s-4);
+  padding: var(--s-3) var(--s-4);
+  border-radius: var(--r-md);
+  background: var(--wait-soft);
+  color: #7A5207;
+  font-size: var(--t-small);
+}

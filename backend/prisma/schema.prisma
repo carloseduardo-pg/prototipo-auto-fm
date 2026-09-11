@@ -1,0 +1,171 @@
+// Portal FM Transportes — Prisma schema (PostgreSQL)
+// Code/persistence in English; UI labels in Portuguese.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  // Prisma 6: URL fica no schema (correto neste projeto).
+  url      = env("DATABASE_URL")
+}
+
+enum SourceKind {
+  OTM
+  SFTP
+  SPREADSHEET
+}
+
+enum SourceState {
+  OK
+  WAIT
+  FAIL
+}
+
+enum ShipmentStatus {
+  READY
+  WAITING
+  FILE
+  DIVERGENCE
+  ISSUED
+}
+
+enum CollectionRunStatus {
+  COMPLETED
+  FAILED
+}
+
+enum IssuanceStatus {
+  PENDING
+  BLOCKED
+  FAILED
+  ISSUED
+}
+
+model User {
+  id                String        @id @default(uuid()) @db.Uuid
+  name              String
+  email             String        @unique
+  passwordHash      String        @map("password_hash")
+  active            Boolean       @default(true)
+  createdAt         DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt         DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+  confirmedPreviews CtePreview[]
+  issuances         CteIssuance[]
+
+  @@map("users")
+}
+
+model CollectionRun {
+  id            String               @id @default(uuid()) @db.Uuid
+  ranAt         DateTime             @map("ran_at") @db.Timestamptz
+  status        CollectionRunStatus
+  shipmentCount Int                  @map("shipment_count")
+  readyCount    Int                  @map("ready_count")
+  notes         String?
+  createdAt     DateTime             @default(now()) @map("created_at") @db.Timestamptz
+  shipments     Shipment[]
+
+  @@map("collection_runs")
+}
+
+model Shipment {
+  id              String           @id @default(uuid()) @db.Uuid
+  code            String           @unique
+  invoiceNumber   String           @map("invoice_number")
+  destination     String
+  customerName    String           @map("customer_name")
+  freightValue    Decimal          @map("freight_value") @db.Decimal(14, 2)
+  weightKg        Decimal          @map("weight_kg") @db.Decimal(12, 3)
+  volumeCount     Int              @map("volume_count")
+  status          ShipmentStatus
+  discrepancyNote String?          @map("discrepancy_note")
+  driverName      String?          @map("driver_name")
+  collectionRunId String?          @map("collection_run_id") @db.Uuid
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt       DateTime         @updatedAt @map("updated_at") @db.Timestamptz
+  collectionRun   CollectionRun?   @relation(fields: [collectionRunId], references: [id])
+  sourceSnapshots SourceSnapshot[]
+  discrepancies   Discrepancy[]
+  preview         CtePreview?
+  issuances       CteIssuance[]
+
+  @@index([status])
+  @@index([collectionRunId])
+  @@map("shipments")
+}
+
+model SourceSnapshot {
+  id         String      @id @default(uuid()) @db.Uuid
+  shipmentId String      @map("shipment_id") @db.Uuid
+  source     SourceKind
+  state      SourceState
+  createdAt  DateTime    @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt  DateTime    @updatedAt @map("updated_at") @db.Timestamptz
+  shipment   Shipment    @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+  @@unique([shipmentId, source])
+  @@map("source_snapshots")
+}
+
+model Discrepancy {
+  id         String   @id @default(uuid()) @db.Uuid
+  shipmentId String   @map("shipment_id") @db.Uuid
+  message    String
+  createdAt  DateTime @default(now()) @map("created_at") @db.Timestamptz
+  shipment   Shipment @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+  @@index([shipmentId])
+  @@map("discrepancies")
+}
+
+model CtePreview {
+  id            String        @id @default(uuid()) @db.Uuid
+  shipmentId    String        @unique @map("shipment_id") @db.Uuid
+  driverName    String        @map("driver_name")
+  payload       Json
+  confirmedAt   DateTime?     @map("confirmed_at") @db.Timestamptz
+  confirmedById String?       @map("confirmed_by_id") @db.Uuid
+  createdAt     DateTime      @default(now()) @map("created_at") @db.Timestamptz
+  updatedAt     DateTime      @updatedAt @map("updated_at") @db.Timestamptz
+  shipment      Shipment      @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  confirmedBy   User?         @relation(fields: [confirmedById], references: [id])
+  issuances     CteIssuance[]
+
+  @@map("cte_previews")
+}
+
+model CteIssuance {
+  id         String         @id @default(uuid()) @db.Uuid
+  shipmentId String         @map("shipment_id") @db.Uuid
+  previewId  String         @map("preview_id") @db.Uuid
+  userId     String?        @map("user_id") @db.Uuid
+  status     IssuanceStatus
+  message    String
+  protocol   String?
+  createdAt  DateTime       @default(now()) @map("created_at") @db.Timestamptz
+  shipment   Shipment       @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+  preview    CtePreview     @relation(fields: [previewId], references: [id], onDelete: Cascade)
+  user       User?          @relation(fields: [userId], references: [id])
+
+  @@index([shipmentId])
+  @@map("cte_issuances")
+}
+
+/// DML audit — filled only by triggers (never by the API).
+model AuditLog {
+  id         String   @id @default(dbgenerated("gen_random_uuid()::text"))
+  tableName  String   @map("tabela")
+  recordId   String?  @map("registro_id")
+  operation  String   @map("operacao")
+  dataBefore Json?    @map("dados_antes")
+  dataAfter  Json?    @map("dados_depois")
+  dbUser     String   @default(dbgenerated("CURRENT_USER")) @map("usuario_db")
+  appUser    String?  @map("app_usuario")
+  createdAt  DateTime @default(now()) @map("criado_em") @db.Timestamptz(6)
+
+  @@index([tableName, createdAt(sort: Desc)], map: "audit_log_tabela_criado_idx")
+  @@index([recordId], map: "audit_log_registro_idx")
+  @@map("audit_log")
+}

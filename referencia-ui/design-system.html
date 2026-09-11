@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Design System · Portal FM Transportes</title>
+<link rel="icon" href="assets/img/fm-mark.png">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fm.css">
+<style>
+  .ds { max-width: 900px; margin: 0 auto; padding: var(--s-12) var(--s-6) var(--s-16); }
+  .ds > section { margin-top: var(--s-12); }
+  .ds h2 { font-size: var(--t-title); font-weight: var(--w-semi); letter-spacing: var(--track-title); }
+  .ds h3 { font-size: var(--t-lead); font-weight: var(--w-semi); margin-top: var(--s-6); }
+  .ds p { color: var(--road); max-width: 68ch; margin-top: var(--s-2); }
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(158px,1fr)); gap: var(--s-3); margin-top: var(--s-4); }
+  .sw { border: 1px solid var(--lane); border-radius: var(--r-md); overflow: hidden; background: var(--surface); }
+  .sw-chip { height: 62px; }
+  .sw-info { padding: var(--s-3); }
+  .sw-name { font-weight: var(--w-semi); font-size: var(--t-small); }
+  .sw-hex { font-size: var(--t-micro); color: var(--road); font-variant-numeric: tabular-nums; }
+  .sw-use { font-size: var(--t-micro); color: var(--road-light); margin-top: var(--s-1); line-height: 1.4; }
+  .specimen { border: 1px solid var(--lane); border-radius: var(--r-lg); background: var(--surface); padding: var(--s-6); margin-top: var(--s-4); }
+  .specimen > * + * { margin-top: var(--s-4); }
+  .type-row { display: flex; align-items: baseline; gap: var(--s-5); border-bottom: 1px solid var(--lane-soft); padding-bottom: var(--s-3); }
+  .type-row:last-child { border-bottom: none; padding-bottom: 0; }
+  .type-tag { font-size: var(--t-micro); color: var(--road-light); width: 132px; flex: none; font-variant-numeric: tabular-nums; }
+  .demo { display: flex; gap: var(--s-6); flex-wrap: wrap; align-items: center; }
+  .rules { margin-top: var(--s-4); }
+  .rules li { padding: var(--s-3) 0; border-bottom: 1px solid var(--lane-soft); color: var(--asphalt); }
+  .rules li:last-child { border-bottom: none; }
+  .rules b { font-weight: var(--w-semi); }
+  code { background: var(--fog); border: 1px solid var(--lane); border-radius: var(--r-sm); padding: 1px 5px; font-size: var(--t-small); }
+</style>
+</head>
+<body>
+
+<div class="ds">
+
+  <header>
+    <a class="mark" href="inicio.html" style="margin-bottom:var(--s-6)">
+      <img src="assets/img/fm-mark.png" alt="">
+      <span class="mark-name">FM Transportes<span>Portal de operações</span></span>
+    </a>
+    <h1 class="display">Design system</h1>
+    <p class="lead">A linguagem visual do portal. Toda cor aqui foi extraída da logomarca da FM — nenhuma foi escolhida por gosto. Se precisar de um valor novo, derive de um token existente ou adicione com justificativa.</p>
+  </header>
+
+  <section>
+    <h2>Cor</h2>
+    <p>O azul da marca é <code>#0079FC</code>. Ele coincide com o azul de sistema da Apple, o que torna a linguagem minimalista nativa da FM e não emprestada de outra empresa. Os neutros vêm do cinza do asfalto no logo: o texto primário é asfalto, não preto — preto puro sobre branco vibra e cansa em tela usada o dia inteiro.</p>
+
+    <h3>Marca</h3>
+    <div class="swatches">
+      <div class="sw"><div class="sw-chip" style="background:#0079FC"></div><div class="sw-info"><div class="sw-name">Azul FM</div><div class="sw-hex">#0079FC</div><div class="sw-use">Ação primária, item ativo, foco</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#0063D1"></div><div class="sw-info"><div class="sw-name">Azul pressionado</div><div class="sw-hex">#0063D1</div><div class="sw-use">Botão sob o dedo</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#E8F2FE"></div><div class="sw-info"><div class="sw-name">Azul suave</div><div class="sw-hex">#E8F2FE</div><div class="sw-use">Seleção, avisos informativos</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#01477C"></div><div class="sw-info"><div class="sw-name">Azul profundo</div><div class="sw-hex">#01477C</div><div class="sw-use">Títulos de tela, nome da marca</div></div></div>
+    </div>
+
+    <h3>Neutros</h3>
+    <div class="swatches">
+      <div class="sw"><div class="sw-chip" style="background:#3A3A38"></div><div class="sw-info"><div class="sw-name">Asfalto</div><div class="sw-hex">#3A3A38</div><div class="sw-use">Texto primário</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#6A6A69"></div><div class="sw-info"><div class="sw-name">Estrada</div><div class="sw-hex">#6A6A69</div><div class="sw-use">Texto secundário, rótulos</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#DEDEDE"></div><div class="sw-info"><div class="sw-name">Faixa</div><div class="sw-hex">#DEDEDE</div><div class="sw-use">Bordas de superfície</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#F5F5F7"></div><div class="sw-info"><div class="sw-name">Névoa</div><div class="sw-hex">#F5F5F7</div><div class="sw-use">Fundo da aplicação</div></div></div>
+    </div>
+
+    <h3>Estado do dado</h3>
+    <p>Verde, âmbar e vermelho aparecem só para comunicar situação de remessa. Nunca como decoração, nunca em botão, nunca em fundo de seção.</p>
+    <div class="swatches">
+      <div class="sw"><div class="sw-chip" style="background:#16A34A"></div><div class="sw-info"><div class="sw-name">Conferido</div><div class="sw-hex">#16A34A</div><div class="sw-use">Fonte lida, pronta para emitir</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#B4780A"></div><div class="sw-info"><div class="sw-name">Aguardando</div><div class="sw-hex">#B4780A</div><div class="sw-use">Falta fonte, ação pendente</div></div></div>
+      <div class="sw"><div class="sw-chip" style="background:#C81E1E"></div><div class="sw-info"><div class="sw-name">Bloqueado</div><div class="sw-hex">#C81E1E</div><div class="sw-use">Divergência, arquivo inválido</div></div></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Tipografia</h2>
+    <p>Stack de sistema: SF Pro no macOS, Segoe no Windows, Inter como reserva. Sem webfont — o portal é ferramenta interna e precisa abrir rápido na rede do escritório. Valores e códigos usam numeral tabular para alinhar em coluna na tabela.</p>
+    <div class="specimen">
+      <div class="type-row"><span class="type-tag">display · 34/600</span><span class="display">Remessas do dia</span></div>
+      <div class="type-row"><span class="type-tag">title · 21/600</span><span class="title">Conferir antes de emitir</span></div>
+      <div class="type-row"><span class="type-tag">lead · 17/400</span><span style="font-size:var(--t-lead)">O robô monta o dado, você confere e emite.</span></div>
+      <div class="type-row"><span class="type-tag">body · 15/400</span><span>Campina Grande, PB · 17 volumes</span></div>
+      <div class="type-row"><span class="type-tag">small · 13/400</span><span class="meta">Última coleta 06h12</span></div>
+      <div class="type-row"><span class="type-tag">tabular</span><span class="num" style="font-size:var(--t-lead)">R$ 1.284,90 · 128.447</span></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Botões</h2>
+    <p>Uma ação primária por tela. Se duas coisas competem pela mesma atenção, a segunda vira secundária.</p>
+    <div class="specimen">
+      <div class="demo">
+        <button class="btn btn-primary">Emitir CT-e</button>
+        <button class="btn btn-secondary">Cancelar</button>
+        <button class="btn btn-quiet">Ver histórico</button>
+        <button class="btn btn-primary" disabled>Emitir CT-e</button>
+      </div>
+      <div class="demo">
+        <button class="btn btn-primary btn-lg">Entrar</button>
+        <button class="btn btn-secondary btn-lg">Coletar agora</button>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Situação da remessa</h2>
+    <p>O selo diz o estado; o chevron diz o quanto a remessa avançou. O chevron vem da própria logomarca da FM, que é uma seta sobre uma estrada — carga que avança. É a única figura decorativa do sistema e ela carrega significado.</p>
+    <div class="specimen">
+      <div class="demo">
+        <span class="row-3"><span class="stage"><i class="on"></i><i class="on"></i><i class="on"></i></span><span class="badge badge-ok">Pronta para emitir</span></span>
+        <span class="row-3"><span class="stage"><i class="on"></i><i></i><i></i></span><span class="badge badge-wait">Aguardando fonte</span></span>
+        <span class="row-3"><span class="stage"><i class="on"></i><i class="on"></i><i></i></span><span class="badge badge-fail">Divergência</span></span>
+        <span class="badge badge-idle">Não iniciada</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Fontes de dados</h2>
+    <p>O componente que carrega o produto. Mostra, por remessa, se cada uma das três origens já entregou o dado. É a leitura que o operador faz antes de decidir se pode emitir — e o motivo de a plataforma existir.</p>
+    <div class="specimen">
+      <div class="demo">
+        <span class="sources">
+          <span class="source source-ok" title="Oracle Logistics: lida">OTM</span>
+          <span class="source source-ok" title="Arquivo no SFTP: lida">FTP</span>
+          <span class="source source-ok" title="Planilha de controle: lida">XLS</span>
+        </span>
+        <span class="meta">três fontes conferem</span>
+      </div>
+      <div class="demo">
+        <span class="sources">
+          <span class="source source-ok">OTM</span>
+          <span class="source source-fail">FTP</span>
+          <span class="source source-ok">XLS</span>
+        </span>
+        <span class="meta">arquivo chegou fora do padrão NOTEFIZ</span>
+      </div>
+      <div class="demo">
+        <span class="sources">
+          <span class="source source-ok">OTM</span>
+          <span class="source source-ok">FTP</span>
+          <span class="source source-wait">XLS</span>
+        </span>
+        <span class="meta">planilha ainda não lançada</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Campos</h2>
+    <div class="specimen">
+      <div class="field">
+        <label for="d1">Motorista</label>
+        <input class="input" id="d1" placeholder="Nome do motorista">
+        <p class="field-hint">Único dado que o robô não coleta — é você quem informa.</p>
+      </div>
+      <div class="field">
+        <label for="d2">E-mail</label>
+        <input class="input" id="d2" value="gutemberg@fmtransportes.com">
+        <p class="field-error">E-mail ou senha não conferem. Tente novamente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Avisos</h2>
+    <p>Erro explica o que aconteceu e o que fazer. Não pede desculpa e não é vago.</p>
+    <div class="specimen">
+      <div class="note">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>As três fontes conferem. Informe o motorista e emita.</span>
+      </div>
+      <div class="note note-wait">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>
+        <span>O arquivo desta nota chegou ao SFTP fora do padrão NOTEFIZ e não pôde ser lido. Peça o reenvio ou lance os dados manualmente.</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Raio e elevação</h2>
+    <p>O raio cresce com a superfície: selo 6px, botão e campo 10px, cartão 14px, painel 20px. Não use um raio único em tudo — é o que faz interface parecer template. A sombra comunica camada, não profundidade decorativa.</p>
+    <div class="specimen">
+      <div class="demo">
+        <span style="background:var(--surface);border:1px solid var(--lane);border-radius:var(--r-sm);padding:var(--s-4);box-shadow:var(--e-1)">6px · e-1</span>
+        <span style="background:var(--surface);border:1px solid var(--lane);border-radius:var(--r-md);padding:var(--s-4);box-shadow:var(--e-2)">10px · e-2</span>
+        <span style="background:var(--surface);border:1px solid var(--lane);border-radius:var(--r-lg);padding:var(--s-4);box-shadow:var(--e-3)">14px · e-3</span>
+        <span style="background:var(--surface);border:1px solid var(--lane);border-radius:var(--r-xl);padding:var(--s-4);box-shadow:var(--e-4)">20px · e-4</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Regras que não se negociam</h2>
+    <ul class="rules">
+      <li><b>A prévia com confirmação humana nunca sai.</b> O robô monta o dado, mas quem emite o documento fiscal é a pessoa. Um erro de reconciliação sem esse ponto de controle vira emissão errada em massa.</li>
+      <li><b>Falha nunca é silenciosa.</b> Se uma fonte não respondeu ou o arquivo veio fora do padrão, a tela diz qual e o que fazer. Uma remessa que não emitiu sem ninguém saber é pior que o retrabalho manual de hoje.</li>
+      <li><b>Emissão bloqueada enquanto as três fontes não conferem.</b> O botão fica desabilitado, não escondido — o operador precisa entender por que não pode agir.</li>
+      <li><b>Verde, âmbar e vermelho só comunicam estado de dado.</b> Nunca decoram.</li>
+      <li><b>Nada anima sozinho.</b> Movimento responde a ação: abrir a prévia, confirmar, fechar. Sem entradas com fade ao rolar a página.</li>
+      <li><b>Toda cor sai do logo.</b> Cor nova só entra em <code>tokens.css</code>, com justificativa.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Acessibilidade</h2>
+    <ul class="rules">
+      <li><b>Foco sempre visível</b> — anel azul de 3px em qualquer elemento navegável por teclado.</li>
+      <li><b>Esc fecha a prévia</b> e o painel é <code>role="dialog"</code> com <code>aria-modal</code>.</li>
+      <li><b>Status nunca depende só de cor</b> — todo selo tem texto junto do ponto colorido.</li>
+      <li><b>Alvos de toque com 44px</b> nos campos e botões grandes.</li>
+      <li><b>Movimento reduzido respeitado</b> via <code>prefers-reduced-motion</code>.</li>
+    </ul>
+  </section>
+
+</div>
+
+</body>
+</html>

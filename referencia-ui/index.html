@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Entrar · Portal FM Transportes</title>
+<link rel="icon" href="assets/img/fm-mark.png">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fm.css">
+</head>
+<body>
+
+<main class="auth">
+  <div class="auth-box">
+
+    <div class="auth-brand">
+      <img src="assets/img/fm-logo.png" alt="FM Transportes">
+    </div>
+
+    <form class="auth-card" id="login" novalidate>
+      <div>
+        <h1 class="auth-title">Entrar no portal</h1>
+        <p class="auth-sub">Use suas credenciais da FM Transportes.</p>
+      </div>
+
+      <div class="field">
+        <label for="email">E-mail</label>
+        <input class="input" type="email" id="email" name="email"
+               placeholder="nome@fmtransportes.com" autocomplete="username" required>
+      </div>
+
+      <div class="field">
+        <label for="senha">Senha</label>
+        <input class="input" type="password" id="senha" name="senha"
+               placeholder="••••••••" autocomplete="current-password" required>
+        <p class="field-error" id="erro" hidden>E-mail ou senha não conferem. Tente novamente.</p>
+      </div>
+
+      <button class="btn btn-primary btn-lg btn-block" type="submit">Entrar</button>
+
+      <p style="text-align:center">
+        <a class="link" href="#">Esqueci minha senha</a>
+      </p>
+    </form>
+
+    <p class="auth-foot">
+      Portal interno · Prottus
+    </p>
+
+  </div>
+</main>
+
+<script>
+  // Protótipo: qualquer credencial preenchida entra.
+  document.getElementById('login').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email');
+    var senha = document.getElementById('senha');
+    var erro  = document.getElementById('erro');
+
+    if (!email.value.trim() || !senha.value.trim()) {
+      erro.hidden = false;
+      (!email.value.trim() ? email : senha).focus();
+      return;
+    }
+    erro.hidden = true;
+    window.location.href = 'inicio.html';
+  });
+</script>
+
+</body>
+</html>

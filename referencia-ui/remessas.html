@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Remessas · Portal FM Transportes</title>
+<link rel="icon" href="assets/img/fm-mark.png">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fm.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <a class="mark" href="inicio.html">
+        <img src="assets/img/fm-mark.png" alt="">
+        <span class="mark-name">FM Transportes<span>Portal de operações</span></span>
+      </a>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item" href="inicio.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        Início
+      </a>
+      <a class="nav-item" href="remessas.html" aria-current="page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v10H3z"/><path d="M16 10h3.5L21 13v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+        Remessas
+        <span class="nav-count">18</span>
+      </a>
+
+      <p class="nav-group">Em breve</p>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V8a6 6 0 0 1 12 0v3"/><rect x="4" y="11" width="16" height="9" rx="2"/></svg>
+        Manifestos
+      </span>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M8 19v-7"/><path d="M13 19V8"/><path d="M18 19v-4"/></svg>
+        Indicadores
+      </span>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M20 12a8 8 0 0 1-.2 1.8l2 1.5-2 3.4-2.3-1a8 8 0 0 1-3 1.7L14 22h-4l-.5-2.6a8 8 0 0 1-3-1.7l-2.3 1-2-3.4 2-1.5A8 8 0 0 1 4 12a8 8 0 0 1 .2-1.8l-2-1.5 2-3.4 2.3 1a8 8 0 0 1 3-1.7L10 2h4l.5 2.6a8 8 0 0 1 3 1.7l2.3-1 2 3.4-2 1.5c.1.6.2 1.2.2 1.8z"/></svg>
+        Automações
+      </span>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="user">
+        <span class="avatar">GB</span>
+        <div>
+          <div class="user-name">Gutemberg</div>
+          <div class="user-role">Expedição</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-quiet menu-btn" id="menu" aria-label="Abrir menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <span class="topbar-title">Remessas</span>
+      <div class="topbar-actions">
+        <span class="meta">Última coleta 06h12</span>
+        <button class="btn btn-secondary" id="recoletar">Coletar agora</button>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <div>
+          <h1 class="display">Remessas do dia</h1>
+          <p class="lead">O robô lê o Oracle Logistics, o SFTP e a planilha de controle, cruza as três fontes e monta o CT-e. Você confere a prévia, informa o motorista e emite.</p>
+        </div>
+      </div>
+
+      <div class="table-wrap">
+        <div class="table-tools">
+          <input class="input" type="search" id="busca" placeholder="Buscar por remessa, nota ou destino" aria-label="Buscar remessas">
+          <div class="spacer"></div>
+          <span class="meta" id="contagem">18 remessas</span>
+        </div>
+
+        <div class="table-scroll">
+          <table class="data">
+            <thead>
+              <tr>
+                <th>Remessa</th>
+                <th>Nota fiscal</th>
+                <th>Destino</th>
+                <th>Fontes</th>
+                <th>Situação</th>
+                <th class="cell-right">Valor do frete</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody id="linhas"></tbody>
+          </table>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- Prévia de emissão -->
+<div class="scrim" id="scrim"></div>
+
+<aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" hidden>
+  <div class="drawer-head">
+    <div>
+      <h2 class="title" id="drawer-title">Conferir antes de emitir</h2>
+      <p class="meta" id="drawer-sub">Remessa —</p>
+    </div>
+    <button class="close" id="fechar" aria-label="Fechar prévia">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    </button>
+  </div>
+
+  <div class="drawer-body" id="drawer-body"></div>
+
+  <div class="drawer-foot">
+    <button class="btn btn-secondary" id="cancelar">Cancelar</button>
+    <button class="btn btn-primary" id="emitir">Emitir CT-e</button>
+  </div>
+</aside>
+
+<script>
+/* --------------------------------------------------------------
+   Dados de exemplo. No projeto real vêm da API alimentada pelo
+   RPA de coleta. A forma do objeto reflete as três fontes.
+   -------------------------------------------------------------- */
+var REMESSAS = [
+  { id:'RM-48213', nf:'128.447', dest:'Caruaru, PE', otm:'ok', sftp:'ok', plan:'ok', valor:'1.284,90',
+    peso:'1.240 kg', volumes:12, motorista:'', situacao:'pronta' },
+  { id:'RM-48214', nf:'128.451', dest:'Petrolina, PE', otm:'ok', sftp:'ok', plan:'ok', valor:'2.917,40',
+    peso:'3.180 kg', volumes:26, motorista:'', situacao:'pronta' },
+  { id:'RM-48215', nf:'128.455', dest:'Campina Grande, PB', otm:'ok', sftp:'fail', plan:'ok', valor:'1.640,00',
+    peso:'1.910 kg', volumes:17, motorista:'', situacao:'arquivo' },
+  { id:'RM-48216', nf:'128.460', dest:'Mossoró, RN', otm:'ok', sftp:'ok', plan:'ok', valor:'3.402,75',
+    peso:'4.020 kg', volumes:33, motorista:'', situacao:'pronta' },
+  { id:'RM-48217', nf:'128.462', dest:'Juazeiro, BA', otm:'ok', sftp:'ok', plan:'wait', valor:'2.115,30',
+    peso:'2.460 kg', volumes:21, motorista:'', situacao:'aguardando' },
+  { id:'RM-48218', nf:'128.468', dest:'Fortaleza, CE', otm:'ok', sftp:'ok', plan:'ok', valor:'4.870,00',
+    peso:'6.150 kg', volumes:48, motorista:'', situacao:'divergencia',
+    divergencia:'Tributação da nota: R$ 4.870,00 no OTM e R$ 4.780,00 no arquivo do SFTP.' },
+  { id:'RM-48219', nf:'128.471', dest:'Arcoverde, PE', otm:'ok', sftp:'ok', plan:'ok', valor:'986,20',
+    peso:'820 kg', volumes:8, motorista:'', situacao:'pronta' },
+  { id:'RM-48220', nf:'128.474', dest:'Natal, RN', otm:'ok', sftp:'fail', plan:'ok', valor:'2.640,00',
+    peso:'3.010 kg', volumes:24, motorista:'', situacao:'arquivo' },
+  { id:'RM-48221', nf:'128.479', dest:'Salvador, BA', otm:'ok', sftp:'ok', plan:'ok', valor:'5.230,60',
+    peso:'7.400 kg', volumes:61, motorista:'', situacao:'pronta' },
+  { id:'RM-48222', nf:'128.483', dest:'Garanhuns, PE', otm:'ok', sftp:'ok', plan:'wait', valor:'1.375,00',
+    peso:'1.520 kg', volumes:14, motorista:'', situacao:'aguardando' },
+  { id:'RM-48223', nf:'128.487', dest:'João Pessoa, PB', otm:'ok', sftp:'ok', plan:'ok', valor:'2.048,90',
+    peso:'2.240 kg', volumes:19, motorista:'', situacao:'pronta' },
+  { id:'RM-48224', nf:'128.492', dest:'Recife, PE', otm:'ok', sftp:'ok', plan:'ok', valor:'742,10',
+    peso:'610 kg', volumes:6, motorista:'', situacao:'pronta' },
+  { id:'RM-48225', nf:'128.496', dest:'Sousa, PB', otm:'wait', sftp:'ok', plan:'ok', valor:'1.890,00',
+    peso:'2.050 kg', volumes:18, motorista:'', situacao:'aguardando' },
+  { id:'RM-48226', nf:'128.501', dest:'Sobral, CE', otm:'ok', sftp:'ok', plan:'ok', valor:'3.120,40',
+    peso:'3.640 kg', volumes:29, motorista:'', situacao:'divergencia',
+    divergencia:'Peso divergente: 3.640 kg no OTM e 3.510 kg na planilha de controle.' },
+  { id:'RM-48227', nf:'128.505', dest:'Vitória de Santo Antão, PE', otm:'ok', sftp:'wait', plan:'ok', valor:'865,00',
+    peso:'720 kg', volumes:7, motorista:'', situacao:'aguardando' },
+  { id:'RM-48228', nf:'128.509', dest:'Feira de Santana, BA', otm:'ok', sftp:'wait', plan:'wait', valor:'4.015,80',
+    peso:'5.230 kg', volumes:42, motorista:'', situacao:'aguardando' },
+  { id:'RM-48229', nf:'128.514', dest:'Serra Talhada, PE', otm:'ok', sftp:'wait', plan:'ok', valor:'1.560,00',
+    peso:'1.680 kg', volumes:15, motorista:'', situacao:'aguardando' },
+  { id:'RM-48230', nf:'128.518', dest:'Maceió, AL', otm:'wait', sftp:'wait', plan:'ok', valor:'2.780,00',
+    peso:'3.320 kg', volumes:27, motorista:'', situacao:'aguardando' }
+];
+
+var SIT = {
+  pronta:      { cls:'badge-ok',   texto:'Pronta para emitir', etapa:3 },
+  aguardando:  { cls:'badge-wait', texto:'Aguardando fonte',   etapa:1 },
+  arquivo:     { cls:'badge-fail', texto:'Arquivo inválido',   etapa:1 },
+  divergencia: { cls:'badge-fail', texto:'Divergência',        etapa:2 }
+};
+
+var FONTE_TITULO = {
+  otm:  'Oracle Logistics',
+  sftp: 'Arquivo no SFTP',
+  plan: 'Planilha de controle'
+};
+
+function fonteClasse(estado) {
+  if (estado === 'ok')   return 'source source-ok';
+  if (estado === 'wait') return 'source source-wait';
+  return 'source source-fail';
+}
+
+function fonteEstadoTexto(estado) {
+  if (estado === 'ok')   return 'lida';
+  if (estado === 'wait') return 'aguardando';
+  return 'falhou';
+}
+
+function chevrons(etapa) {
+  var out = '<span class="stage" aria-hidden="true">';
+  for (var i = 1; i <= 3; i++) out += '<i class="' + (i <= etapa ? 'on' : '') + '"></i>';
+  return out + '</span>';
+}
+
+function linha(r) {
+  var s = SIT[r.situacao];
+  var podeEmitir = r.situacao === 'pronta';
+
+  var fontes = '<span class="sources">';
+  ['otm','sftp','plan'].forEach(function (k) {
+    var rotulo = k === 'otm' ? 'OTM' : (k === 'sftp' ? 'FTP' : 'XLS');
+    fontes += '<span class="' + fonteClasse(r[k]) + '" title="' +
+              FONTE_TITULO[k] + ': ' + fonteEstadoTexto(r[k]) + '">' + rotulo + '</span>';
+  });
+  fontes += '</span>';
+
+  return '' +
+    '<tr data-id="' + r.id + '">' +
+      '<td><span class="cell-strong num">' + r.id + '</span><div class="cell-sub">' + r.volumes + ' volumes · ' + r.peso + '</div></td>' +
+      '<td><span class="num">' + r.nf + '</span><div class="cell-sub">M. Dias</div></td>' +
+      '<td>' + r.dest + '</td>' +
+      '<td>' + fontes + '</td>' +
+      '<td><span class="row-3">' + chevrons(s.etapa) + '<span class="badge ' + s.cls + '">' + s.texto + '</span></span></td>' +
+      '<td class="cell-right num">R$ ' + r.valor + '</td>' +
+      '<td class="cell-right">' +
+        '<button class="btn ' + (podeEmitir ? 'btn-primary' : 'btn-secondary') + '" data-abrir="' + r.id + '">' +
+          (podeEmitir ? 'Conferir' : 'Ver detalhes') +
+        '</button>' +
+      '</td>' +
+    '</tr>';
+}
+
+function desenhar(lista) {
+  var tbody = document.getElementById('linhas');
+  if (!lista.length) {
+    tbody.innerHTML = '<tr><td colspan="7"><div class="empty">' +
+      '<h3>Nenhuma remessa encontrada</h3>' +
+      '<p>Ajuste a busca ou rode a coleta novamente para trazer as remessas do Oracle.</p>' +
+      '</div></td></tr>';
+  } else {
+    tbody.innerHTML = lista.map(linha).join('');
+  }
+  document.getElementById('contagem').textContent =
+    lista.length + (lista.length === 1 ? ' remessa' : ' remessas');
+}
+
+/* ---- Prévia ------------------------------------------------- */
+
+var drawer = document.getElementById('drawer');
+var scrim  = document.getElementById('scrim');
+var atual  = null;
+
+function abrir(id) {
+  var r = REMESSAS.filter(function (x) { return x.id === id; })[0];
+  if (!r) return;
+  atual = r;
+
+  var s = SIT[r.situacao];
+  document.getElementById('drawer-sub').textContent =
+    'Remessa ' + r.id + ' · nota ' + r.nf + ' · M. Dias';
+
+  var aviso = '';
+  if (r.situacao === 'divergencia') {
+    aviso = '<div class="note note-wait">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>' +
+      '<span>' + r.divergencia + ' Confira na origem antes de emitir.</span></div>';
+  } else if (r.situacao === 'arquivo') {
+    aviso = '<div class="note note-wait">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3 2 20h20L12 3z"/><path d="M12 10v4M12 17h.01"/></svg>' +
+      '<span>O arquivo desta nota chegou ao SFTP fora do padrão NOTEFIZ e não pôde ser lido. Peça o reenvio ou lance os dados manualmente.</span></div>';
+  } else if (r.situacao === 'aguardando') {
+    aviso = '<div class="note note-wait">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>' +
+      '<span>Ainda falta pelo menos uma fonte. A emissão fica bloqueada até as três conferirem.</span></div>';
+  } else {
+    aviso = '<div class="note">' +
+      '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 6 9 17l-5-5"/></svg>' +
+      '<span>As três fontes conferem. Informe o motorista e emita.</span></div>';
+  }
+
+  var fontesLista = ['otm','sftp','plan'].map(function (k) {
+    var estado = r[k];
+    var cls = estado === 'ok' ? 'badge-ok' : (estado === 'wait' ? 'badge-wait' : 'badge-fail');
+    var txt = estado === 'ok' ? 'Lida' : (estado === 'wait' ? 'Aguardando' : 'Falhou');
+    return '<dl class="row"><dt>' + FONTE_TITULO[k] + '</dt>' +
+           '<dd><span class="badge ' + cls + '">' + txt + '</span></dd></dl>';
+  }).join('');
+
+  document.getElementById('drawer-body').innerHTML =
+    aviso +
+    '<div class="review">' +
+      '<div class="review-title">Dados montados pelo robô</div>' +
+      '<dl class="row"><dt>Remetente</dt><dd>M. Dias<span class="from">nota fiscal ' + r.nf + ' recebida no SFTP</span></dd></dl>' +
+      '<dl class="row"><dt>Destino</dt><dd>' + r.dest + '<span class="from">Oracle Logistics</span></dd></dl>' +
+      '<dl class="row"><dt>Volumes</dt><dd class="num">' + r.volumes + '<span class="from">Oracle Logistics</span></dd></dl>' +
+      '<dl class="row"><dt>Peso</dt><dd class="num">' + r.peso + '<span class="from">Oracle Logistics</span></dd></dl>' +
+      '<dl class="row"><dt>Valor do frete</dt><dd class="num">R$ ' + r.valor + '<span class="from">tela de custos do CT-e</span></dd></dl>' +
+    '</div>' +
+
+    '<div class="review">' +
+      '<div class="review-title">Conferência das fontes</div>' + fontesLista +
+    '</div>' +
+
+    '<div class="field">' +
+      '<label for="motorista">Motorista</label>' +
+      '<input class="input" id="motorista" placeholder="Nome do motorista" autocomplete="off"' +
+        (r.situacao === 'pronta' ? '' : ' disabled') + '>' +
+      '<p class="field-hint">Único dado que o robô não coleta — é você quem informa.</p>' +
+    '</div>';
+
+  var btn = document.getElementById('emitir');
+  btn.disabled = r.situacao !== 'pronta';
+  btn.textContent = 'Emitir CT-e';
+
+  drawer.hidden = false;
+  requestAnimationFrame(function () {
+    drawer.classList.add('open');
+    scrim.classList.add('open');
+    var campo = document.getElementById('motorista');
+    if (campo && !campo.disabled) campo.focus({ preventScroll: true });
+  });
+}
+
+function fechar() {
+  drawer.classList.remove('open');
+  scrim.classList.remove('open');
+  setTimeout(function () { drawer.hidden = true; }, 260);
+}
+
+document.getElementById('linhas').addEventListener('click', function (e) {
+  var b = e.target.closest('[data-abrir]');
+  if (b) abrir(b.getAttribute('data-abrir'));
+});
+document.getElementById('fechar').addEventListener('click', fechar);
+document.getElementById('cancelar').addEventListener('click', fechar);
+scrim.addEventListener('click', fechar);
+document.addEventListener('keydown', function (e) {
+  if (e.key === 'Escape' && !drawer.hidden) fechar();
+});
+
+document.getElementById('emitir').addEventListener('click', function () {
+  var campo = document.getElementById('motorista');
+  if (!campo.value.trim()) {
+    campo.focus();
+    campo.style.borderColor = 'var(--fail)';
+    return;
+  }
+  this.textContent = 'Emitindo…';
+  this.disabled = true;
+  var self = this;
+  setTimeout(function () {
+    atual.situacao = 'emitida';
+    SIT.emitida = { cls:'badge-ok', texto:'CT-e emitido', etapa:3 };
+    desenhar(REMESSAS);
+    fechar();
+    self.textContent = 'Emitir CT-e';
+    self.disabled = false;
+  }, 900);
+});
+
+/* ---- Busca --------------------------------------------------- */
+
+document.getElementById('busca').addEventListener('input', function () {
+  var t = this.value.trim().toLowerCase();
+  desenhar(!t ? REMESSAS : REMESSAS.filter(function (r) {
+    return (r.id + ' ' + r.nf + ' ' + r.dest).toLowerCase().indexOf(t) > -1;
+  }));
+});
+
+document.getElementById('recoletar').addEventListener('click', function () {
+  var t = this.textContent;
+  this.textContent = 'Coletando…';
+  this.disabled = true;
+  var self = this;
+  setTimeout(function () { self.textContent = t; self.disabled = false; }, 1200);
+});
+
+var menu = document.getElementById('menu');
+if (menu) menu.addEventListener('click', function () {
+  document.getElementById('sidebar').classList.toggle('open');
+});
+
+desenhar(REMESSAS);
+</script>
+
+</body>
+</html>

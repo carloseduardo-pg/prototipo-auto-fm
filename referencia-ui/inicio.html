@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Início · Portal FM Transportes</title>
+<link rel="icon" href="assets/img/fm-mark.png">
+<link rel="stylesheet" href="assets/tokens.css">
+<link rel="stylesheet" href="assets/fm.css">
+</head>
+<body>
+
+<div class="app">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-head">
+      <a class="mark" href="inicio.html">
+        <img src="assets/img/fm-mark.png" alt="">
+        <span class="mark-name">FM Transportes<span>Portal de operações</span></span>
+      </a>
+    </div>
+
+    <nav class="nav">
+      <a class="nav-item" href="inicio.html" aria-current="page">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/></svg>
+        Início
+      </a>
+      <a class="nav-item" href="remessas.html">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h13v10H3z"/><path d="M16 10h3.5L21 13v4h-5"/><circle cx="7" cy="18" r="1.6"/><circle cx="17.5" cy="18" r="1.6"/></svg>
+        Remessas
+        <span class="nav-count">18</span>
+      </a>
+
+      <p class="nav-group">Em breve</p>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 11V8a6 6 0 0 1 12 0v3"/><rect x="4" y="11" width="16" height="9" rx="2"/></svg>
+        Manifestos
+      </span>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5"/><path d="M8 19v-7"/><path d="M13 19V8"/><path d="M18 19v-4"/></svg>
+        Indicadores
+      </span>
+      <span class="nav-item is-locked">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.6 1.6 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.6 1.6 0 0 0-2.7 1.1V21a2 2 0 1 1-4 0v-.1A1.6 1.6 0 0 0 7 19.4a1.6 1.6 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.6 1.6 0 0 0-1.1-2.7H1a2 2 0 1 1 0-4h.1A1.6 1.6 0 0 0 2.6 7a1.6 1.6 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.6 1.6 0 0 0 1.8.3H7a1.6 1.6 0 0 0 1-1.5V1a2 2 0 1 1 4 0v.1a1.6 1.6 0 0 0 1 1.5 1.6 1.6 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.6 1.6 0 0 0-.3 1.8V7a1.6 1.6 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.6 1.6 0 0 0-1.5 1z"/></svg>
+        Automações
+      </span>
+    </nav>
+
+    <div class="sidebar-foot">
+      <div class="user">
+        <span class="avatar">GB</span>
+        <div>
+          <div class="user-name">Gutemberg</div>
+          <div class="user-role">Expedição</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <button class="btn btn-quiet menu-btn" id="menu" aria-label="Abrir menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+      <span class="topbar-title">Início</span>
+      <div class="topbar-actions">
+        <a class="btn btn-secondary" href="remessas.html">Ir para Remessas</a>
+      </div>
+    </header>
+
+    <main class="content">
+
+      <div class="page-head">
+        <div>
+          <h1 class="display">Bom dia, Gutemberg</h1>
+          <p class="lead">O robô de coleta rodou às 06h12 e trouxe 18 remessas da M. Dias. Sete já estão com as três fontes conferidas e prontas para emitir.</p>
+        </div>
+      </div>
+
+      <section class="metrics">
+        <div class="metric">
+          <div class="metric-label">Prontas para emitir</div>
+          <div class="metric-value">7</div>
+          <div class="metric-foot">OTM, SFTP e planilha conferem</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Aguardando fonte</div>
+          <div class="metric-value">9</div>
+          <div class="metric-foot">Falta pelo menos uma das três</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Com divergência</div>
+          <div class="metric-value">2</div>
+          <div class="metric-foot">Precisam de conferência manual</div>
+        </div>
+        <div class="metric">
+          <div class="metric-label">Emitidas hoje</div>
+          <div class="metric-value">31</div>
+          <div class="metric-foot">CT-e enviados ao GW Webtrans</div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head">
+          <h2 class="title">Última coleta</h2>
+          <span class="badge badge-ok" style="margin-left:auto">Concluída 06h12</span>
+        </div>
+        <div class="card-body">
+          <div class="review">
+            <div class="review-title">Fontes lidas nesta execução</div>
+            <dl class="row">
+              <dt>Oracle Logistics</dt>
+              <dd>18 remessas aprovadas · custos e dados do CT-e coletados nas duas telas</dd>
+            </dl>
+            <dl class="row">
+              <dt>SFTP</dt>
+              <dd>16 arquivos NOTEFIZ lidos
+                <span class="from">2 chegaram fora do padrão e foram separados para conferência</span>
+              </dd>
+            </dl>
+            <dl class="row">
+              <dt>Planilha de controle</dt>
+              <dd>18 linhas conferidas</dd>
+            </dl>
+          </div>
+
+          <div class="note">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+            <span>O robô monta os dados, mas quem emite é você. Toda remessa passa por uma prévia de conferência antes de virar CT-e no GW.</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="card-head"><h2 class="title">Precisa de você agora</h2></div>
+        <div class="card-body stack-4">
+          <div class="row-3 wrap">
+            <span class="badge badge-fail">2 divergências</span>
+            <span>Valores do CT-e não batem entre o OTM e a nota recebida no SFTP.</span>
+            <a class="btn btn-secondary" href="remessas.html" style="margin-left:auto">Revisar</a>
+          </div>
+          <div class="row-3 wrap">
+            <span class="badge badge-wait">2 arquivos</span>
+            <span>Chegaram como PDF em vez de NOTEFIZ e não puderam ser lidos pelo robô.</span>
+            <a class="btn btn-secondary" href="remessas.html" style="margin-left:auto">Ver quais</a>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<script>
+  var menu = document.getElementById('menu');
+  if (menu) menu.addEventListener('click', function () {
+    document.getElementById('sidebar').classList.toggle('open');
+  });
+</script>
+
+</body>
+</html>

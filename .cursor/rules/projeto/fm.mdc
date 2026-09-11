@@ -1,0 +1,55 @@
+---
+description: Regras do projeto Portal FM Transportes — stack Distac, domínio de expedição, marca azul FM
+alwaysApply: true
+---
+
+# Projeto FM Transportes — Regras específicas
+
+Complementa `.cursor/rules/prottus/`.  
+Pasta: `prototipo-auto-fm` — portal (protótipo) da FM.
+
+## Contexto
+- Sistema: Portal de operações FM Transportes
+- 1º módulo: remessas / reconciliação / prévia de CT-e (Manifesto fora; API GW depois)
+- Dados de remessa: RPA (Vini) + seed — este repo não coleta OTM/SFTP na 1ª entrega
+- Usuários: operadores de expedição; coordenador (Gutemberg)
+- Cliente: FM Transportes (Recife-PE) — LinkedIn `fmtransp` apenas
+- Desenvolvedora: Prottus
+- Logo: `imagens/fm-logo.png` · `imagens/fm-mark.png`
+- UI de referência: `referencia-ui/`
+
+## Não fazer
+- Não editar `docs/prottus/` nem `.cursor/rules/prottus/`
+- Não copiar domínio Distac (`clients`, `products`, `orders`) como produto FM
+- Não pesquisar CNPJ/site/Instagram da FM por busca
+- Não versionar senhas de GW/OTM/SFTP
+- Não remover a prévia humana nem emitir com fontes incompletas
+- Não usar paleta Distac (`#C02028`) neste produto
+
+## Documentação (ler nesta ordem)
+- `docs/projeto/contexto.md`
+- `docs/projeto/DOMINIO-TECNICO.md`
+- `docs/projeto/FLUXO-APLICACAO.md`
+- `docs/projeto/USAR-COMO-BASE.md`
+- `docs/projeto/seguranca.md`
+- `docs/projeto/escalabilidade.md`
+- `docs/projeto/especificacoes.md`
+- `docs/projeto/design-system.md`
+- `docs/projeto/mapa-entidades.md`
+- `docs/projeto/modulos/STATUS_PROTOTIPO.md`
+
+## Stack
+- Mono-repo: React+Vite+TS · NestJS+TS · Prisma · PostgreSQL local (**sem Docker**)
+- Auth: JWT access+refresh em cookie **httpOnly**
+- `JwtAuthGuard` **global**; `@Public()` só health/login/refresh/logout
+- Helmet, Throttler, ValidationPipe, CORS, `/api`, Swagger
+- Código/DB em inglês; UI em português
+
+## Marca
+- Primário `#0079FC` · press `#0063D1` · ink `#3A3A38` · fundo `#F5F5F7`
+- Tipografia: system-ui / Segoe / Inter
+- Sem emojis; semântico verde/âmbar/vermelho só para estado de fonte
+
+## Apps
+- Specs: `docs/projeto/aplicacoes/`
+- Catálogo Prottus: `docs/prottus/aplicacoes/`
