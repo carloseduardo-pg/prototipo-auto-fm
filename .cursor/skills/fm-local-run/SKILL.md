@@ -16,8 +16,7 @@ Abrir `referencia-ui/index.html` no navegador. Design system: `referencia-ui/des
 1. Postgres `:5432`
 2. `.env` a partir de `.env.example` (database `fm_auto`)
 3. `npm run install:all` · `npm run setup`
-4. `npm run dev:api` → `/api` e `/api/docs`
-5. `npm run dev:web` → `:5190`
+4. `npm run dev` → API `/api` + `/api/docs` e UI `:5190` (os dois juntos). Avulso: `dev:api` / `dev:web`.
 
 Não usar login Distac (`vendedor@distac.local`) neste produto. Seed FM a definir no scaffold.
 

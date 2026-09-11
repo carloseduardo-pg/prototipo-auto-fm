@@ -41,8 +41,7 @@ Detalhe: [`docs/projeto/especificacoes.md`](docs/projeto/especificacoes.md).
 cp .env.example .env && cp .env backend/.env
 npm run install:all
 npm run setup          # DB + migrate + seed
-npm run dev:api        # http://localhost:3000/api  · Swagger /api/docs
-npm run dev:web        # http://localhost:5190
+npm run dev            # API :3000/api + UI :5190 (Ctrl+C para os dois)
 ```
 
 Login seed (campo vazio na tela): `operador@fm.local` / `fm123456`.
